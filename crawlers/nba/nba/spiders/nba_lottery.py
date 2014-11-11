@@ -1,5 +1,6 @@
-import re
+import re, json
 from scrapy.spider import BaseSpider
+from nba.settings import LP, PROC
 from nba.items import NbaItem
 from scrapy.selector import Selector
 from scrapy.http import Request
@@ -8,13 +9,13 @@ class NbaLotterySpider(BaseSpider):
     name = "nba_lottery"
     allowed_domains = ["http://liansai.500.com"]
     start_urls = (
-            "http://liansai.500.com/lq/215/proc/1172/0_2014_10/",
-            "http://liansai.500.com/lq/215/proc/1172/0_2014_11/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2014_12/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_1/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_2/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_3/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_4/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_2013_10/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_2013_11/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_2013_12/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_2014_1/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_2014_2/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_2014_3/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_2014_4/",
     )
 
     def parse(self, response):

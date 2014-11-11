@@ -13,3 +13,8 @@ NEWSPIDER_MODULE = 'nba.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'nba (+http://www.yourdomain.com)'
+
+
+# liansai.500.com domain config
+LP = "177"    # 2013/2014:177    2014/2015:215
+PROC = "980"  # 2013/2014:980    2014/2015:1172
