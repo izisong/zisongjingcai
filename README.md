@@ -5,20 +5,31 @@ zisongjingcai
 
 ##爬虫
 ###NBA
+####配置
 
-**配置**
+**配置爬取哪个赛季的数据**
+
+打开`crawlers/nba/nba/settings.py`，修改变量`LP`,`PROC`即可，`LP`表示赛季，`PROC`表示比赛种类，如常规赛，季后赛等。默认配置是爬取2014/2015赛季的常规赛。
+```python
+# liansai.500.com domain config
+LP = "215"    # 2013/2014:177    2014/2015:215
+PROC = "1172"  # 2013/2014:980    2014/2015:1172
+SEASON = 2014  # 2013/2014:2013   2014/2015:2014
+```
+
+**配置爬取哪些月的数据**
 
 当前，配置爬取哪些月的NBA赛程数据需要直接修改代码文件，打开`crawlers/nba/nba/spiders/nba_lottery.py`，对链接注释或取消注释即可。如下配置是指爬取2014年10月和11月的NBA竞彩数据。每个链接对应的数据包括当月已经开赛和未开赛的全部数据。
 ```python
-    start_urls = (
-            "http://liansai.500.com/lq/215/proc/1172/0_2014_10/",
-            "http://liansai.500.com/lq/215/proc/1172/0_2014_11/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2014_12/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_1/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_2/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_3/",
-            #"http://liansai.500.com/lq/215/proc/1172/0_2015_4/",
-    )
+    start_urls = ( 
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON) + "_10/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON) + "_11/",
+            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON) + "_12/",
+            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_1/",
+            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_2/",
+            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_3/",
+            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_4/",
+    ) 
 ```
 
 **执行命令**
