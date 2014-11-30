@@ -17,3 +17,13 @@ class NbaItem(Item):
     rangfen = Field()
     panlu = Field()
 
+class InjuryItem(Item):
+    # define the fields for your item here like:
+    # name = Field()
+    date = Field()
+    team = Field()
+    player = Field()
+    role = Field()
+    injury = Field()
+    absence = Field()
+
