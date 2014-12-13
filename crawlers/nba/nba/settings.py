@@ -1,3 +1,4 @@
+#--encoding:utf-8--
 # Scrapy settings for nba project
 #
 # For simplicity, this file contains only the most important settings by
@@ -19,3 +20,8 @@ NEWSPIDER_MODULE = 'nba.spiders'
 LP = "215"    # 2013/2014:177    2014/2015:215
 PROC = "1172"  # 2013/2014:980    2014/2015:1172
 SEASON = 2014  # 2013/2014:2013   2014/2015:2014
+
+# odds spider config
+PLAYID = "313"  #混合过关:313    让分胜负:275
+PERIOD = 1   #定义爬取最近PERIOD天的历史赔率数据
+

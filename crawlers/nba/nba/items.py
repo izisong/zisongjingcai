@@ -27,3 +27,18 @@ class InjuryItem(Item):
     injury = Field()
     absence = Field()
 
+class OddsItem(Item):
+    date = Field()
+    kedui = Field()
+    zhudui = Field()
+    ke_range = Field()
+    zhu_range = Field()
+    ke_odds = Field()
+    zhu_odds = Field()
+    ke_bet = Field()
+    zhu_bet = Field()
+    result = Field()
+    rangfen_result = Field()
+    rangfen = Field()
+    rangfen_odds = Field()
+

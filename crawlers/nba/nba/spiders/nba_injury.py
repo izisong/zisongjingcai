@@ -12,7 +12,7 @@ class NbaInjurySpider(BaseSpider):
 
     def parse(self, response):
         sel = Selector(response)
-        trs = sel.xpath('//*[@id="cut08"]/div/div/div[2]/table/tbody/tr[position()>1]')
+        trs = sel.xpath('//*[@id="cut08"]/div/div/div[2]/table/tbody/tr/td/div/table/tbody[2]/tr[position()>1]')
         for tr in trs:
             date = tr.xpath('td[1]/div/span/text()').extract()
             team = tr.xpath('td[4]/div/span/text()').extract()
