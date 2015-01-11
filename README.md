@@ -5,6 +5,9 @@ zisongjingcai
 
 ##爬虫
 
+###环境支持
+需要系统已安装Python2.7和python包scrapy0.20.2
+
 ###NBA
 
 ####配置赛程数据爬取
