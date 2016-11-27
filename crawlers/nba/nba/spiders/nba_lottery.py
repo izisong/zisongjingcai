@@ -12,9 +12,9 @@ class NbaLotterySpider(BaseSpider):
             "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON) + "_10/",
             "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON) + "_11/",
             "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON) + "_12/",
-            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_1/",
-            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_2/",
-            #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_3/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_1/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_2/",
+            "http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_3/",
             #"http://liansai.500.com/lq/" + LP + "/proc/" + PROC + "/0_" + str(SEASON+1) + "_4/",
     )
 
@@ -34,17 +34,28 @@ class NbaLotterySpider(BaseSpider):
                 kedui_score, zhudui_score = re.sub("[^\d-]", "", match[0]).split('-')
             else:
                 kedui_score, zhudui_score = None, None
+            half_score = tr.xpath('td[5]/text()').extract()
+            if match:
+                kedui_halfscore, zhudui_halfscore = re.sub("[^\d-]", "", half_score[0]).split('-')
+            else:
+                kedui_halfscore, zhudui_halfscore = None, None
             result = tr.xpath('td[6]/em/text()').extract()
             rangfen = tr.xpath('td[7]/text()').extract()
             panlu = tr.xpath('td[8]/em/text()').extract()
+            daxiaofen = tr.xpath('td[9]/text()').extract()
+            daxiaofen_result = tr.xpath('td[10]/em/text()').extract()
             nbaitem = NbaItem()
             nbaitem['date'] = year + '-' + month_day
             nbaitem['kedui'] = kedui[0] if kedui else None
             nbaitem['zhudui'] = zhudui[0] if zhudui else None
             nbaitem['kedui_score'] = kedui_score
             nbaitem['zhudui_score'] = zhudui_score
+            nbaitem['kedui_halfscore'] = kedui_halfscore
+            nbaitem['zhudui_halfscore'] = zhudui_halfscore
             nbaitem['result'] = result[0] if result else None
             nbaitem['rangfen'] = rangfen[0] if rangfen else None
             nbaitem['panlu'] = panlu[0] if panlu else None
+            nbaitem['daxiaofen'] = daxiaofen[0] if daxiaofen else None
+            nbaitem['daxiaofen_result'] = daxiaofen_result[0] if daxiaofen_result else None
             yield nbaitem
 
